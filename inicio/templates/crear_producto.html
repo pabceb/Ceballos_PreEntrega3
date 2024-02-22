@@ -15,8 +15,7 @@
     </nav>
     <h1>PRODUCTOS</h1>
     <h1>Crear nuevo PRODUCTO</h1>
-    {% comment %} <form action={% url "crear_producto"%} method="POST"> {% endcomment %}
-    <form action={% url "productos"%} method="POST">
+    <form action={% url "crear_producto"%} method="POST">
         {% csrf_token %}
         <table>
             {{formulario}}

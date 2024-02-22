@@ -22,25 +22,27 @@ def crear_producto(request):
     formulario = FormularioCrearProducto()
     if request.method == 'POST':
         formulario = FormularioCrearProducto(request.POST)
-        prod_id = formulario.cleaned_data.get('prod_id')
-        nombre = formulario.cleaned_data.get('nombre')
-        marca = formulario.cleaned_data.get('marca')
-        precio = formulario.cleaned_data.get('precio')
-        producto = Producto(prod_id = prod_id, nombre = nombre, marca = marca, precio = precio)
-        producto.save()
-        return redirect('productos.html')
+        if formulario.is_valid():
+            prod_id = formulario.cleaned_data.get('prod_id')
+            nombre = formulario.cleaned_data.get('nombre')
+            marca = formulario.cleaned_data.get('marca')
+            precio = formulario.cleaned_data.get('precio')
+            producto = Producto(prod_id = prod_id, nombre = nombre, marca = marca, precio = precio)
+            producto.save()
+            return redirect('productos.html')
     return render(request, 'crear_producto.html', {'formulario': formulario})
 
 def crear_cliente(request):
     formulario = FormularioCrearCliente()
     if request.method == 'POST':
         formulario = FormularioCrearCliente(request.POST)
-        nombre = formulario.cleaned_data.get('nombre')
-        apellido = formulario.cleaned_data.get('apellido')
-        telefono = formulario.cleaned_data.get('telefono')
-        cliente = Cliente(nombre = nombre, apellido = apellido, telefono = telefono)
-        cliente.save()
-        return redirect('clientes.html')
+        if formulario.is_valid():
+            nombre = formulario.cleaned_data.get('nombre')
+            apellido = formulario.cleaned_data.get('apellido')
+            telefono = formulario.cleaned_data.get('telefono')
+            cliente = Cliente(nombre = nombre, apellido = apellido, telefono = telefono)
+            cliente.save()
+            return redirect('clientes.html')
     return render(request, 'crear_cliente.html', {'formulario': formulario})
 
 def mostrar_productos(request):
