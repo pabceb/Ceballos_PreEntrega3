@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>PreEntrega3</title>
+    <title>PreEntrega3 - Productos</title>
 </head>
 
-{% comment %} <body style = "background-color: black", "font-color: white"> {% endcomment %}
 <body>
     <nav>
         <a href={% url "inicio" %}>INICIO</a>
         <a href={% url "clientes" %}>CLIENTES</a>
         <a href={% url "productos" %}>PRODUCTOS</a>
     </nav>
-
+    <h1>PRODUCTOS</h1>
+    <h1>Crear nuevo PRODUCTO</h1>
+    {% comment %} <form action={% url "crear_producto"%} method="POST"> {% endcomment %}
+    <form action={% url "productos"%} method="POST">
+        {% csrf_token %}
+        <table>
+            {{formulario}}
+        </table>
+        <input type="submit", value="Crear">
+    </form>
     
 </body>
 <footer>

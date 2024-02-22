@@ -13,8 +13,18 @@
         <a href={% url "clientes" %}>CLIENTES</a>
         <a href={% url "productos" %}>PRODUCTOS</a>
     </nav>
+    <h1>PRODUCTOS</h1>
+    {% comment %} mostrar productos {% endcomment %}
+    <a href={% url "crear_producto" %}>Crear producto nuevo</a>
+    <h3>Mostrar productos:</h3>
+    <p>
+        {% for producto in productos %}
+            <ul>
+                <li>{{producto}}</li>
+            </ul>
+            {% endfor %}
+    </p>
 
-    
 </body>
 <footer>
     <div class="grid-container"> 
@@ -23,10 +33,10 @@
             <p>PreEntrega3 - Curso Python Flex [CoderHouse]</p>    
         </div>
         <div class="grid-item">
-            <a href=""><i style="font-size:28px" class="fa fa-github"></i></a>
+            <a href="inicio"><i style="font-size:28px" class="fa fa-github"></i></a>
         </div>
         <div class="grid-item">
-            <a href=""><i style="font-size:28px" class="fa fa-linkedin-square"></i></a>    
+            <a href="inicio"><i style="font-size:28px" class="fa fa-linkedin-square"></i></a>    
         </div>
     </div>
 </footer>
