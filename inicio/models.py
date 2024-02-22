@@ -16,4 +16,4 @@ class Cliente(models.Model):
     telefono = models.IntegerField()
     
     def __str__(self):
-        return f'{self.nombre} {self.apellido} {self.telefono}'
+        return f'{self.nombre} {self.apellido} Tel: {self.telefono}'
