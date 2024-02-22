@@ -8,25 +8,37 @@
 </head>
 
 <body>
+    <header>Primera WEB - CoderHouse</header>
     <nav>
         <a href={% url "inicio" %}>INICIO</a>
         <a href={% url "clientes" %}>CLIENTES</a>
         <a href={% url "productos" %}>PRODUCTOS</a>
     </nav>
-
-    
+    <main>
+        <h1>CLIENTES</h1>
+        <a href={% url "crear_cliente" %}>Crear cliente nuevo</a>
+        <h3>Mostrar clientes:</h3>
+        <p>
+            {% for cliente in clientes %}
+                <ul>
+                    <li>{{cliente}}</li>
+                </ul>
+            {% endfor %}
+        </p>
+    </main>
+    <footer>
+        <div class="grid-container"> 
+            <div class="grid-item">
+                <p>Página web desarrollada por Pablo Ceballos</p>
+                <p>PreEntrega3 - Curso Python Flex [CoderHouse]</p>    
+            </div>
+            <div class="grid-item">
+                <a href={% url "inicio" %}><i style="font-size:28px" class="fa fa-github"></i></a>
+            </div>
+            <div class="grid-item">
+                <a href={% url "inicio" %}><i style="font-size:28px" class="fa fa-linkedin-square"></i></a>    
+            </div>
+        </div>
+    </footer>
 </body>
-<footer>
-    <div class="grid-container"> 
-        <div class="grid-item">
-            <p>Página web desarrollada por Pablo Ceballos</p>
-            <p>PreEntrega3 - Curso Python Flex [CoderHouse]</p>    
-        </div>
-        <div class="grid-item">
-            <a href="inicio"><i style="font-size:28px" class="fa fa-github"></i></a>
-        </div>
-        <div class="grid-item">
-            <a href="inicio"><i style="font-size:28px" class="fa fa-linkedin-square"></i></a>    
-        </div>
-    </div>
-</footer>
+</html>

@@ -11,4 +11,4 @@ class FormularioCrearProducto(forms.Form):
 class FormularioCrearCliente(forms.Form):
     nombre = forms.CharField(max_length = 20)
     apellido = forms.CharField(max_length = 20)
-    telefono = prod_id = forms.IntegerField()
+    telefono = forms.IntegerField()

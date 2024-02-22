@@ -29,7 +29,7 @@ def crear_producto(request):
             precio = formulario.cleaned_data.get('precio')
             producto = Producto(prod_id = prod_id, nombre = nombre, marca = marca, precio = precio)
             producto.save()
-            return redirect('productos.html')
+            return redirect('productos')
     return render(request, 'crear_producto.html', {'formulario': formulario})
 
 def crear_cliente(request):
@@ -42,7 +42,7 @@ def crear_cliente(request):
             telefono = formulario.cleaned_data.get('telefono')
             cliente = Cliente(nombre = nombre, apellido = apellido, telefono = telefono)
             cliente.save()
-            return redirect('clientes.html')
+            return redirect('clientes')
     return render(request, 'crear_cliente.html', {'formulario': formulario})
 
 def mostrar_productos(request):
