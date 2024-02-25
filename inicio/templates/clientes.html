@@ -20,13 +20,25 @@
         <h1>CLIENTES</h1>
         <a href={% url "crear_cliente" %}>Crear cliente nuevo</a>
         <h3>Clientes existentes:</h3>
-        <p>
+        <form action={% url 'clientes'%}>
+            {{formulario_cliente}}
+            <input type="submit" value="Buscar">
+        </form>
+        {% comment %} <ul>
             {% for cliente in clientes %}
-                <ul>
+                <li>{{cliente}}</li>
+                {% endfor %}
+        </ul> {% endcomment %}
+        {% if clientes %}
+            <ul>
+                {% for cliente in clientes %}
                     <li>{{cliente}}</li>
-                </ul>
-            {% endfor %}
-        </p>
+                {% endfor %}
+            </ul>
+    {% else %}
+        <p>No se encontraron clientes</p>
+    {% endif %}
+        
     </main>
     <footer>
         <div class="grid-container"> 

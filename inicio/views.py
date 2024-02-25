@@ -3,20 +3,36 @@ from django.http import HttpResponse
 # from django.template import Template, Context, loader
 
 from inicio.models import Cliente, Producto
-from inicio.forms import FormularioCrearProducto, FormularioCrearCliente
+from inicio.forms import FormularioCrearProducto, FormularioCrearCliente, BusquedaCliente, BusquedaProducto
 
 def inicio(request):
     # return HttpResponse('Ceballos - PreEntrega3')
     return render(request, 'inicio.html', {})
 
 def productos(request):
-    productos = Producto.objects.all()
-    return render(request, 'productos.html', {'productos': productos})
+    # productos = Producto.objects.all()
+    # se agrega formulario de busqueda (consultas --> GET)
+    formulario = BusquedaProducto(request.GET)
+    if formulario.is_valid():
+        prod_a_buscar = formulario.cleaned_data.get('nombre')
+        # productos = Producto.objects.filter(nombre = prod_a_buscar) 
+        # se modifica para que sea por búsqueda parcial
+        productos = Producto.objects.filter(nombre__icontains = prod_a_buscar)
+    
+    return render(request, 'productos.html', {'productos': productos, 'formulario': formulario})
 
 
 def clientes(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'clientes.html', {'clientes': clientes})
+    # Version 1 - sin busqueda
+    # clientes = Cliente.objects.all()
+    # return render(request, 'clientes.html', {'clientes': clientes})
+    # Version 2 - CON busqueda
+    formulario_cliente = BusquedaCliente(request.GET)
+    if formulario_cliente.is_valid():
+        cliente_buscado = formulario_cliente.cleaned_data.get('nombre')
+        clientes = Cliente.objects.filter(nombre__icontains = cliente_buscado)
+        
+    return render(request, 'clientes.html', {'clientes': clientes, 'formulario_cliente': formulario_cliente})
 
 def crear_producto(request):
     formulario = FormularioCrearProducto()
@@ -47,10 +63,6 @@ def crear_cliente(request):
 
 def mostrar_productos(request):
     return HttpResponse('Ceballos - PreEntrega3 - Productos')
-#     productos = Producto.objects.all()
-#     return render(request, 'productos.html', {'productos': productos})
 
 def mostrar_clientes(request):
     return HttpResponse('Ceballos - PreEntrega3 - Clientes')
-#     clientes = Cliente.objects.all()
-#     return render(request, 'clientes.html', {'clientes': clientes})

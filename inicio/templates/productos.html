@@ -17,16 +17,29 @@
         <a href={% url "productos" %} class="nav_link">PRODUCTOS</a>
     </nav>
     <main>
-    <h1>PRODUCTOS</h1>
-    <a href={% url "crear_producto" %}>Crear producto nuevo</a>
-    <h3>Productos cargados:</h3>
-    <p>
-        {% for producto in productos %}
+        <h1>PRODUCTOS</h1>
+        <a href={% url "crear_producto" %}>Crear producto nuevo</a>
+        <h3>Productos cargados:</h3>
+        <form action={% url 'productos'%}>
+            {{formulario}}
+            <input type="submit" value="Buscar">
+        </form>
+        {% comment %} <p>
+            {% for producto in productos %}
+                <ul>
+                    <li>{{producto}}</li>
+                </ul>
+            {% endfor %}
+        </p> {% endcomment %}
+        {% if productos %}
             <ul>
-                <li>{{producto}}</li>
+                {% for producto in productos %}
+                    <li>{{producto}}</li>
+                {% endfor %}
             </ul>
-        {% endfor %}
-    </p>
+        {% else %}
+            <p>No se encontraron productos</p>
+        {% endif %}
     </main>
     <footer>
         <div class="grid-container"> 
